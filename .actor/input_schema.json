@@ -10,17 +10,18 @@
             "type": "string",
             "description": "Starting URL of the API documentation to extract. Example: a reference, OpenAPI, or getting-started page.",
             "editor": "textfield",
+            "default": "https://paystack.com/docs/api/",
             "prefill": "https://paystack.com/docs/api/",
             "example": "https://paystack.com/docs/api/"
         },
         "maxPages": {
             "title": "Max pages",
             "type": "integer",
-            "description": "Maximum number of documentation pages to crawl. Unrelated marketing pages are skipped automatically.",
-            "default": 100,
+            "description": "Maximum number of documentation pages to crawl. Unrelated marketing pages are skipped automatically. Keep this at 20 or lower for a fast first run; raise it for large API references.",
+            "default": 20,
             "minimum": 1,
             "maximum": 1000,
-            "prefill": 100
+            "prefill": 20
         },
         "includeCodeExamples": {
             "title": "Include code examples",
