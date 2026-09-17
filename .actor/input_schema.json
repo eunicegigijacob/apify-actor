@@ -1,0 +1,45 @@
+{
+    "$schema": "https://apify.com/schemas/v1/input.ide.json",
+    "title": "API Documentation Extractor",
+    "type": "object",
+    "schemaVersion": 1,
+    "description": "Provide an API documentation URL. The Actor crawls relevant pages, prefers OpenAPI/Swagger when available, and returns structured API intelligence.",
+    "properties": {
+        "startUrl": {
+            "title": "Documentation URL",
+            "type": "string",
+            "description": "Starting URL of the API documentation to extract. Example: a reference, OpenAPI, or getting-started page.",
+            "editor": "textfield",
+            "prefill": "https://paystack.com/docs/api/",
+            "example": "https://paystack.com/docs/api/"
+        },
+        "maxPages": {
+            "title": "Max pages",
+            "type": "integer",
+            "description": "Maximum number of documentation pages to crawl. Unrelated marketing pages are skipped automatically.",
+            "default": 100,
+            "minimum": 1,
+            "maximum": 1000,
+            "prefill": 100
+        },
+        "includeCodeExamples": {
+            "title": "Include code examples",
+            "type": "boolean",
+            "description": "Extract documented code examples (cURL, JavaScript, Python, and other languages). Examples are copied from the docs, never generated.",
+            "default": true
+        },
+        "includeWebhooks": {
+            "title": "Include webhooks",
+            "type": "boolean",
+            "description": "Extract documented webhook events, payloads, and signature verification details when present.",
+            "default": true
+        },
+        "includeErrors": {
+            "title": "Include errors",
+            "type": "boolean",
+            "description": "Extract documented error codes, HTTP statuses, and messages when present.",
+            "default": true
+        }
+    },
+    "required": ["startUrl"]
+}

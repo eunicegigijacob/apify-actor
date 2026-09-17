@@ -1,0 +1,19 @@
+{
+    "$schema": "https://apify.com/schemas/v1/actor.ide.json",
+    "actorSpecification": 1,
+    "name": "api-documentation-extractor",
+    "title": "API Documentation Extractor — Structured API Intelligence",
+    "description": "Turn API documentation into structured, machine-readable API intelligence. Extracts endpoints, authentication, parameters, webhooks, and errors from OpenAPI specs and HTML docs.",
+    "version": "0.1",
+    "buildTag": "latest",
+    "meta": {
+        "templateId": "ts-crawlee-cheerio",
+        "generatedBy": "Cursor Grok 4.6"
+    },
+    "inputSchema": "./input_schema.json",
+    "outputSchema": "./output_schema.json",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    },
+    "dockerfile": "../Dockerfile"
+}

@@ -1,0 +1,120 @@
+{
+    "$schema": "https://apify.com/schemas/v1/dataset.ide.json",
+    "actorSpecification": 1,
+    "title": "API intelligence",
+    "description": "Normalized API documentation extracted from OpenAPI specifications or HTML docs.",
+    "fields": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+            "api": {
+                "type": "object",
+                "title": "API metadata",
+                "description": "Name, description, version, and base URLs of the documented API."
+            },
+            "authentication": {
+                "type": "array",
+                "title": "Authentication",
+                "description": "Documented authentication mechanisms."
+            },
+            "endpoints": {
+                "type": "array",
+                "title": "Endpoints",
+                "description": "HTTP operations extracted from the documentation."
+            },
+            "webhooks": {
+                "type": "array",
+                "title": "Webhooks",
+                "description": "Documented webhook events."
+            },
+            "errors": {
+                "type": "array",
+                "title": "Errors",
+                "description": "Documented API errors."
+            },
+            "rateLimits": {
+                "title": "Rate limits",
+                "description": "Documented rate-limit rules, or null when not documented."
+            },
+            "sdks": {
+                "type": "array",
+                "title": "SDKs",
+                "description": "Documented client libraries."
+            },
+            "codeExamples": {
+                "type": "array",
+                "title": "Code examples",
+                "description": "Documented request examples."
+            },
+            "crawl": {
+                "type": "object",
+                "title": "Crawl stats",
+                "description": "Pages visited, duration, and source URLs."
+            }
+        }
+    },
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "transformation": {
+                "fields": ["api", "authentication", "crawl"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "api": { "label": "API", "format": "object" },
+                    "authentication": { "label": "Authentication", "format": "array" },
+                    "crawl": { "label": "Crawl", "format": "object" }
+                }
+            }
+        },
+        "endpoints": {
+            "title": "Endpoints",
+            "transformation": {
+                "unwind": ["endpoints"],
+                "fields": ["method", "path", "name", "description", "sourceUrl"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "method": { "label": "Method", "format": "text" },
+                    "path": { "label": "Path", "format": "text" },
+                    "name": { "label": "Name", "format": "text" },
+                    "description": { "label": "Description", "format": "text" },
+                    "sourceUrl": { "label": "Source", "format": "link" }
+                }
+            }
+        },
+        "webhooks": {
+            "title": "Webhooks",
+            "transformation": {
+                "unwind": ["webhooks"],
+                "fields": ["event", "description", "sourceUrl"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "event": { "label": "Event", "format": "text" },
+                    "description": { "label": "Description", "format": "text" },
+                    "sourceUrl": { "label": "Source", "format": "link" }
+                }
+            }
+        },
+        "errors": {
+            "title": "Errors",
+            "transformation": {
+                "unwind": ["errors"],
+                "fields": ["status", "code", "message", "sourceUrl"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "status": { "label": "HTTP status", "format": "number" },
+                    "code": { "label": "Code", "format": "text" },
+                    "message": { "label": "Message", "format": "text" },
+                    "sourceUrl": { "label": "Source", "format": "link" }
+                }
+            }
+        }
+    }
+}

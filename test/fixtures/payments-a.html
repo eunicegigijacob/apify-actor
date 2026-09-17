@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Payments API</title>
+    </head>
+    <body>
+        <h1>Payments API</h1>
+        <p>The Payments API lets you collect payments. Base URL https://api.payments.test/v1</p>
+        <h2>Authentication</h2>
+        <p>Authorization headers should be in the following format: Authorization: Bearer YOUR_SECRET_KEY.</p>
+
+        <h2>Transactions</h2>
+        <p>POST /transaction/initialize Initialize Transaction. Start a payment.</p>
+        <p>GET /transaction/{id} Fetch Transaction.</p>
+        <p>GET /customer List customers.</p>
+        <p>POST /customer Create a customer.</p>
+
+        <h3>Initialize request body</h3>
+        <table>
+            <caption>Request body</caption>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>email</td>
+                    <td>string</td>
+                    <td>yes</td>
+                    <td>Customer email</td>
+                </tr>
+                <tr>
+                    <td>amount</td>
+                    <td>integer</td>
+                    <td>yes</td>
+                    <td>Amount in kobo</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>200 Successful response</p>
+        <p>400 Invalid request</p>
+
+        <h2>Webhooks</h2>
+        <p>Verify webhook signatures using HMAC SHA256 in the X-Signature header.</p>
+        <ul>
+            <li>charge.success A successful charge. Payload includes event and data.</li>
+            <li>transfer.success A successful transfer.</li>
+        </ul>
+        <pre>{
+  "event": "charge.success",
+  "data": { "id": 1 }
+}</pre>
+
+        <h2>Errors</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Code</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>400</td>
+                    <td>invalid_request</td>
+                    <td>The request is not valid</td>
+                </tr>
+                <tr>
+                    <td>401</td>
+                    <td>unauthorized</td>
+                    <td>Invalid key</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Rate limit: 100 requests per minute. Header X-RateLimit-Remaining is returned.</p>
+    </body>
+</html>

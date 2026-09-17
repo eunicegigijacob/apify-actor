@@ -1,0 +1,87 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Users API",
+        "description": "Manage users.",
+        "version": "1.2.0"
+    },
+    "servers": [{ "url": "https://api.example.com/v1" }],
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "description": "Send a Bearer token in the Authorization header."
+            }
+        },
+        "schemas": {
+            "User": {
+                "type": "object",
+                "required": ["email"],
+                "properties": {
+                    "email": { "type": "string", "description": "User email" },
+                    "name": { "type": "string" }
+                }
+            }
+        }
+    },
+    "security": [{ "bearerAuth": [] }],
+    "paths": {
+        "/users": {
+            "get": {
+                "summary": "List users",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": { "type": "integer" },
+                        "description": "Page size"
+                    }
+                ],
+                "responses": {
+                    "200": { "description": "A list of users" }
+                }
+            },
+            "post": {
+                "summary": "Create user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": { "$ref": "#/components/schemas/User" }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": { "description": "Created" },
+                    "400": { "description": "Invalid request" }
+                }
+            }
+        },
+        "/users/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "schema": { "type": "string" }
+                }
+            ],
+            "get": {
+                "summary": "Get user",
+                "responses": { "200": { "description": "A user" }, "404": { "description": "Not found" } }
+            },
+            "delete": {
+                "summary": "Delete user",
+                "responses": { "204": { "description": "Deleted" } }
+            }
+        }
+    },
+    "webhooks": {
+        "user.created": {
+            "post": {
+                "description": "Fired when a user is created."
+            }
+        }
+    }
+}

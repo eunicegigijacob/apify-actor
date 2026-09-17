@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Users API Reference</title>
+        <meta name="description" content="Simple users HTTP API." />
+    </head>
+    <body>
+        <h1>Users API</h1>
+        <p>Base URL: https://api.example.com/v1</p>
+        <h2>Authentication</h2>
+        <p>All requests require an Authorization: Bearer token header.</p>
+
+        <h2>Endpoints</h2>
+        <p>GET /users List all users in the workspace.</p>
+        <p>POST /users Create a user.</p>
+        <p>GET /users/{id} Retrieve a single user.</p>
+        <p>DELETE /users/{id} Remove a user.</p>
+
+        <table>
+            <caption>Query parameters</caption>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>In</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>limit</td>
+                    <td>query</td>
+                    <td>integer</td>
+                    <td>no</td>
+                    <td>Page size</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Request body</h3>
+        <table>
+            <caption>Request body fields</caption>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>email</td>
+                    <td>string</td>
+                    <td>yes</td>
+                    <td>User email</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>string</td>
+                    <td>no</td>
+                    <td>Display name</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Responses</h3>
+        <p>200 Successful response</p>
+        <p>400 Invalid request</p>
+        <p>404 Not found</p>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Checkout API docs</title>
+    </head>
+    <body>
+        <h1>Checkout API</h1>
+        <p>Integrate collections. Server https://api.checkout.test/v3</p>
+        <h2>Auth</h2>
+        <p>Use an API key in the Authorization header as Bearer, or send X-API-Key.</p>
+        <p>POST /v3/payments Create a payment collection.</p>
+        <p>GET /v3/payments/{id} Fetch a payment.</p>
+        <p>GET /v3/customers List customers.</p>
+
+        <h2>Webhook events</h2>
+        <p>Events are posted to your webhook URL. Verify with HMAC using the verif-hash header.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>charge.completed</td>
+                    <td>Payment completed successfully</td>
+                </tr>
+                <tr>
+                    <td>transfer.completed</td>
+                    <td>Payout completed</td>
+                </tr>
+            </tbody>
+        </table>
+        <pre><code class="language-json">{ "event": "charge.completed", "data": {} }</code></pre>
+
+        <h2>Errors</h2>
+        <p>400 invalid_request The payload is malformed.</p>
+        <p>401 unauthorized Missing API key.</p>
+    </body>
+</html>

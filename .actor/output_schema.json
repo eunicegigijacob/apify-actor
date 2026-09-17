@@ -1,0 +1,17 @@
+{
+    "$schema": "https://apify.com/schemas/v1/output.ide.json",
+    "actorOutputSchemaVersion": 1,
+    "title": "API intelligence output",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "API intelligence",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        },
+        "outputFile": {
+            "type": "string",
+            "title": "OUTPUT.json",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/OUTPUT"
+        }
+    }
+}

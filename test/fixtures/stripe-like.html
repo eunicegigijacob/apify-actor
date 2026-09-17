@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+    <head><title>Stripe API Reference</title></head>
+    <body>
+        <h1>Stripe API</h1>
+        <p>Base URL https://api.stripe.com</p>
+        <p>Authenticate with Authorization: Bearer sk_test_...</p>
+        <p>POST /v1/charges Create a charge.</p>
+        <p>GET /v1/charges/{id} Retrieve a charge.</p>
+        <p>POST /v1/customers Create a customer.</p>
+        <p>GET /v1/customers/{id} Retrieve a customer.</p>
+        <h2>Webhooks</h2>
+        <p>Verify signatures with HMAC in the Stripe-Signature header.</p>
+        <ul>
+            <li>charge.succeeded A charge completed.</li>
+            <li>customer.created A customer was created.</li>
+        </ul>
+        <p>400 invalid_request The request is invalid.</p>
+    </body>
+</html>
